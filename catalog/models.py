@@ -6,6 +6,7 @@ class Student(models.Model):
     name = models.CharField(max_length=100, verbose_name='Имя')
     surname = models.CharField(max_length=100, verbose_name='Фамилия')
     ava = models.ImageField(upload_to='students/', verbose_name='Аватар', null=True, blank=True)
+    is_active = models.BooleanField(default=True, verbose_name='Активен')
 
     def __str__(self):
         return f"{self.name} {self.surname}"
