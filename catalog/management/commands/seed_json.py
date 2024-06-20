@@ -24,4 +24,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         json_data = self.json_read_data()
-        print(json_data['products'])
+
+        [print(el) for el in json_data['categories']]
+        [print(el) for el in json_data['products']]
