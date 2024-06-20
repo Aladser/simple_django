@@ -17,6 +17,7 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'категория'
         verbose_name_plural = 'категории'
+        ordering = ('name',)
 
 
 class Product(models.Model):
@@ -36,8 +37,9 @@ class Product(models.Model):
     )
 
     def __str__(self):
-        return f"{self.name} [{self.price} {self.category}]"
+        return f"(ID={self.pk}) {self.name} [{self.price} {self.category}]"
 
     class Meta:
         verbose_name = 'продукт'
         verbose_name_plural = 'продукты'
+        ordering = ('name', 'price', 'created_at', 'updated_at')
