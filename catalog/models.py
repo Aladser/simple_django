@@ -27,6 +27,7 @@ class Product(models.Model):
     is_active = models.BooleanField(default=True, verbose_name='Активен')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
+    manufactured_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата производства')
     category = models.ForeignKey(
         to=Category,
         on_delete=models.CASCADE,
