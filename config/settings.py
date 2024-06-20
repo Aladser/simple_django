@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'djg_products',
+        'USER': 'admin',
+        'PASSWORD': 'Database_1821',
+        'HOST': 'localhost',
+        'POST': 5432
     }
 }
 
@@ -130,5 +134,5 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_URL = '/admin/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
