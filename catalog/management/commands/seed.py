@@ -10,15 +10,23 @@ class Command(BaseCommand):
 
         # Категории
         category_list = [
-            {'name':'бытовая химия'},
+            {'name': 'бытовая химия'},
             {'name': 'автомобили'},
             {'name': 'продукты'},
         ]
         category_create_list = [Category(**ctg) for ctg in category_list]
         Category.objects.bulk_create(category_create_list)
 
-        category_list = []
+        category_list = {}
         for ctg in Category.objects.all():
-            category_list.append({'id':ctg.pk, 'name':ctg.name})
+            category_list[ctg.name] = ctg.pk
 
-        print(*category_list)
+        product_list = [
+            {'name': 'хлеб', 'category_id': category_list['продукты']},
+            {'name': 'шампунь', 'category_id': category_list['бытовая химия']},
+            {'name': 'Жигули', 'category_id': category_list['автомобили']},
+        ]
+        product_create_list = [Product(**prd) for prd in product_list]
+        Product.objects.bulk_create(product_create_list)
+
+
