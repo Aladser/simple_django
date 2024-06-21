@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from catalog.models import Product
+from catalog.models import Product, Contact
 
 
 def index(request):
@@ -16,4 +16,4 @@ def contacts(request):
         message = request.POST['message']
         print(f"Пользователь {name}({phone}) написал: {message}")
 
-    return render(request, 'catalog/contacts.html')
+    return render(request, 'catalog/contacts.html', {'contacts': Contact.objects.all()})

@@ -24,21 +24,24 @@
     <div class="row text-start">
         <div class="col-lg-9 col-md-6 col-sm-12">
             <div class="card mb-4 box-shadow">
-                <div class="card-body">
-                    <table class="table table-striped">
+                <div class="card-body mb-2">
+                    {% for contact in contacts %}
+                    <table class="table table-striped border shadow">
                         <tr>
                             <td class="w-25">Страна</td>
-                            <td>USA</td>
+                            <td>{{contact.country}}</td>
                         </tr>
                         <tr>
                             <td class="w-25">ИНН</td>
-                            <td>91-1144442</td>
+                            <td>{{contact.inn}}</td>
                         </tr>
                         <tr>
                             <td class="w-25">Адрес</td>
-                            <td>Redmond,WA,98052-6399</td>
+                            <td>{{contact.address}}</td>
                         </tr>
+                        <br>
                     </table>
+                    {% endfor %}
                 </div>
             </div>
         </div>

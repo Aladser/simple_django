@@ -7,6 +7,7 @@ NULLABLE = {
 
 
 class Category(models.Model):
+    """Категория"""
     name = models.CharField(max_length=100, verbose_name='Имя')
     description = models.CharField(max_length=256, verbose_name='Описание',**NULLABLE)
     is_active = models.BooleanField(default=True, verbose_name='Активен')
@@ -21,6 +22,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    """Товар"""
     name = models.CharField(max_length=100, verbose_name='Имя')
     description = models.CharField(max_length=256, verbose_name='Описание', **NULLABLE)
     ava = models.ImageField(upload_to='img/products', verbose_name='Аватар', **NULLABLE)
@@ -43,3 +45,17 @@ class Product(models.Model):
         verbose_name = 'продукт'
         verbose_name_plural = 'продукты'
         ordering = ('name', 'price', 'created_at', 'updated_at')
+
+
+class Contact(models.Model):
+    country = models.CharField(max_length=100, verbose_name='Страна')
+    inn = models.IntegerField(verbose_name='ИНН')
+    address = models.CharField(max_length=200, verbose_name='Адрес')
+
+    def __str__(self):
+        return f"{self.inn}, {self.country}, {self.address}"
+
+    class Meta:
+        verbose_name = 'Контакт'
+        verbose_name_plural = 'контакты'
+        ordering = ('inn',)
