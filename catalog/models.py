@@ -37,7 +37,7 @@ class Product(models.Model):
     )
 
     def __str__(self):
-        return f"(ID={self.pk}) {self.name} [{self.price} {self.category}]"
+        return f"{self.name} ({self.category}{' '+str(self.price) if self.price else ''})"
 
     class Meta:
         verbose_name = 'продукт'
