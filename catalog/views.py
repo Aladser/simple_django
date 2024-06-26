@@ -1,9 +1,11 @@
 from django.shortcuts import render
-from catalog.models import Product, Contact
+from catalog.models import Product, Contact, Category
 
 
 def index(request):
-    products = Product.objects.all().order_by('-updated_at').values()[:5]
+    products = Product.objects.all().order_by('-updated_at').values()
+    for prd in products:
+        prd['category'] = Category.objects.filter(pk=prd['category_id']).get().name
 
     return render(request, 'catalog/product/index.html', {'products': products})
 
