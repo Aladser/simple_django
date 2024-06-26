@@ -6,6 +6,8 @@ def index(request):
     products = Product.objects.all().order_by('-updated_at').values()
     for prd in products:
         prd['category'] = Category.objects.filter(pk=prd['category_id']).get().name
+        del prd['category_id']
+        prd['name'] = prd['name'][:100]
 
     return render(request, 'catalog/product/index.html', {'products': products})
 
