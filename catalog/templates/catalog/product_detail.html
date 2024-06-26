@@ -17,21 +17,19 @@
 </div>
 
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-5">Товары</h1>
+    <div class="w-75 mx-auto">
+        <h3 class="display-5">Товар</h3>
+        <p>
+            <div class="border border-primary">{{product.name}}</div>
+            <div>{{product.description}}</div>
+            <div class="border border-primary">{{product.ava}}</div>
+            <div>{{product.price}}</div>
+            <div class="border border-primary">{{product.category}}</div>
+        </p>
+    </div>
 </div>
 
 <div class="container">
-    <div class="row text-center">
-        <table class="table w-75 mx-auto">
-            <tr><th>ID</th><th class="w-50">Название</th><th>Цена</th></tr>
-            {%for prd in products %}
-            <tr>
-                <td>{{prd.id}}</td>
-                <td><a href="/products/{{prd.id}}">{{prd.name}}</a></td>
-                <td>{{prd.price}} р.</td></tr>
-            {% endfor %}
-        </table>
-    </div>
 
     <footer class="pt-4 my-md-5 pt-md-5 border-top">
         <div class="row">
