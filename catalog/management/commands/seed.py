@@ -31,35 +31,40 @@ class Command(BaseCommand):
             'name': 'Toyota',
             'category_id': 1,
             'description': 'японский автомобиль',
-            'price': 300
+            'price': 300,
+            'ava': 'toyota.jpeg'
         },
         {
             'pk': 4,
             'name': 'Шампунь',
             'category_id': 2,
             'description': 'для головы',
-            'price': 300
+            'price': 300,
+            'ava': 'shampoo.jpeg'
         },
         {
             'pk': 5,
             'name': 'Мыло',
             'category_id': 2,
             'description': 'для всего тела',
-            'price': 100
+            'price': 100,
+            'ava' : 'soap.jpeg'
         },
         {
             'pk': 6,
             'name': 'Крем',
             'category_id': 2,
             'description': 'для кожи',
-            'price': 200
+            'price': 200,
+            'ava': 'cream.jpeg'
         },
         {
             'pk': 7,
             'name': 'Хлеб',
             'category_id': 3,
             'description': 'всему голова',
-            'price': 50
+            'price': 50,
+            'ava': 'bread.png'
         },
     ]
 
