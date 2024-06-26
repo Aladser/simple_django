@@ -2,6 +2,10 @@
 
 {% block content %}
 <div class="row text-center">
+    <div class="mb-4">
+        <a href="/product/create" class="btn btn-primary ">Добавить товар</a>
+    </div>
+
     <table class="table w-75 mx-auto">
         <tr>
             <th class="w-50">Название</th>
@@ -10,7 +14,7 @@
         </tr>
         {%for prd in products %}
         <tr>
-            <td><a href="/products/{{prd.id}}">{{prd.name}}</a></td>
+            <td><a href="/product/{{prd.id}}">{{prd.name}}</a></td>
             <td>{{prd.category}}</td>
             <td>{{prd.price}} р.</td></tr>
         {% endfor %}

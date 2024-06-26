@@ -9,15 +9,24 @@ def index(request):
         del prd['category_id']
         prd['name'] = prd['name'][:100]
 
-    return render(request, 'catalog/product/index.html', {'title': 'Склад', 'products': products})
+    return render(request, 'catalog/product/index.html', {'title': 'Склад', 'header':  'Список товаров', 'products': products})
 
 
 def product_show(request, pk):
     product = Product.objects.filter(pk=pk).get()
+    title = f"Склад - {product.name}"
     return render(
         request,
         'catalog/product/detail.html',
-        {'title': f"Склад - {product.name}", 'product': product}
+        {'title': title, 'header':product.name, 'product': product}
+    )
+
+
+def product_create(request):
+    return render(
+        request,
+        'catalog/product/create.html',
+        {'title': 'Склад - добавление товара','header':'Добавить товар'}
     )
 
 
@@ -28,4 +37,8 @@ def contacts(request):
         message = request.POST['message']
         print(f"Пользователь {name}({phone}) написал: {message}")
 
-    return render(request, 'catalog/contacts.html', {'title': 'Склад - контакты', 'contacts': Contact.objects.all()})
+    return render(
+        request,
+        'catalog/contacts.html',
+        {'title': 'Склад - контакты', 'header': 'Контакты', 'contacts': Contact.objects.all()}
+    )
