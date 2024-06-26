@@ -5,13 +5,13 @@ from catalog.models import Product, Contact
 def index(request):
     products = Product.objects.all().order_by('-updated_at').values()[:5]
 
-    return render(request, 'catalog/index.html', {'products': products})
+    return render(request, 'catalog/product/index.html', {'products': products})
 
 
 def product_show(request, pk):
     return render(
         request,
-        'catalog/product_detail.html',
+        'catalog/product/detail.html',
         {'product': Product.objects.filter(pk=pk).get()}
     )
 
