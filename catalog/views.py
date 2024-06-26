@@ -6,15 +6,18 @@ def index(request):
     products = Product.objects.all().order_by('-updated_at').values()
     for prd in products:
         prd['category'] = Category.objects.filter(pk=prd['category_id']).get().name
+        del prd['category_id']
+        prd['name'] = prd['name'][:100]
 
-    return render(request, 'catalog/product/index.html', {'products': products})
+    return render(request, 'catalog/product/index.html', {'title': 'Склад', 'products': products})
 
 
 def product_show(request, pk):
+    product = Product.objects.filter(pk=pk).get()
     return render(
         request,
         'catalog/product/detail.html',
-        {'product': Product.objects.filter(pk=pk).get()}
+        {'title': f"Склад - {product.name}", 'product': product}
     )
 
 
@@ -25,4 +28,4 @@ def contacts(request):
         message = request.POST['message']
         print(f"Пользователь {name}({phone}) написал: {message}")
 
-    return render(request, 'catalog/contacts.html', {'contacts': Contact.objects.all()})
+    return render(request, 'catalog/contacts.html', {'title': 'Склад - контакты', 'contacts': Contact.objects.all()})
