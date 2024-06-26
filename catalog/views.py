@@ -4,9 +4,16 @@ from catalog.models import Product, Contact
 
 def index(request):
     products = Product.objects.all().order_by('-updated_at').values()[:5]
-    [print(el) for el in products]
 
-    return render(request, 'catalog/index.html')
+    return render(request, 'catalog/product/index.html', {'products': products})
+
+
+def product_show(request, pk):
+    return render(
+        request,
+        'catalog/product/detail.html',
+        {'product': Product.objects.filter(pk=pk).get()}
+    )
 
 
 def contacts(request):
