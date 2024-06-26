@@ -21,17 +21,10 @@
 </div>
 
 <div class="container">
-    <div class="row text-center">
-        <table class="table w-75 mx-auto">
-            <tr><th class="w-75">Название</th><th>Цена</th></tr>
-            {%for prd in products %}
-            <tr>
-                <td><a href="/products/{{prd.id}}">{{prd.name}}</a></td>
-                <td>{{prd.price}} р.</td></tr>
-            {% endfor %}
-        </table>
-    </div>
-
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
     <footer class="pt-4 my-md-5 pt-md-5 border-top">
         <div class="row">
             <div class="col-12 col-md">
