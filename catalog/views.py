@@ -10,7 +10,8 @@ def index(request):
         del prd['category_id']
         prd['name'] = prd['name'][:100]
 
-    return render(request, 'catalog/product/index.html', {'title': 'Склад', 'header':  'Список товаров', 'products': products})
+    return render(request, 'catalog/product/index.html',
+                  {'title': 'Склад', 'header': 'Список товаров', 'products': products})
 
 
 def product_show(request, pk):
@@ -19,7 +20,7 @@ def product_show(request, pk):
     return render(
         request,
         'catalog/product/detail.html',
-        {'title': title, 'header':product.name, 'product': product}
+        {'title': title, 'header': product.name, 'product': product}
     )
 
 
@@ -27,14 +28,21 @@ def product_create(request):
     return render(
         request,
         'catalog/product/create.html',
-        {'title': 'Склад - добавление товара','header':'Добавить товар'}
+        {
+            'title': 'Склад - добавление товара',
+            'header': 'Добавить товар',
+            'categories': Category.objects.all()
+        }
     )
 
 
 def product_store(request):
-    name = request.POST['name']
-    phone = request.POST['phone']
-    message = request.POST['message']
+    product_dict = {}
+    for prd in request.POST.items():
+        if prd[0] != 'csrfmiddlewaretoken':
+            product_dict[prd[0]] = prd[1] if prd[1] != '' else None
+
+    Product.objects.create(**product_dict)
     return HttpResponseRedirect("/")
 
 

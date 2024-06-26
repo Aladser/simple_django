@@ -10,20 +10,24 @@
                     <input type="text" name="name" class="form-control" id="name" placeholder="Имя" required>
                 </div>
                 <div class="mb-3">
-                    <label for="phone">Описание</label>
-                    <input type="text" name="phone" class="form-control" id="phone" placeholder="Описание" required>
+                    <label for="description">Описание</label>
+                    <input type="text" name="description" class="form-control" id="description" placeholder="Описание">
                 </div>
                 <div class="mb-3">
-                    <label for="message">Цена за покупку</label>
-                    <textarea type="number" name="message" class="form-control" id="message" placeholder="Цена" required></textarea>
+                    <label for="price">Цена за покупку</label>
+                    <input type="number" name="price" class="form-control" id="price" placeholder="Цена" required>
                 </div>
                 <div class="mb-3">
                     <label for="category">Категория</label>
-                    <textarea type="text" name="message" class="form-control" id="category" required></textarea>
+                    <select class="w-100 py-2 border bg-white" name="category_id" id="category">
+                        {% for ctg in categories%}
+                        <option value="{{ctg.id}}">{{ctg.name}}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="ava">Изображение</label>
-                    <textarea type="text" name="message" class="form-control" id="ava" required></textarea>
+                    <input type="file" name="ava" class="form-control" id="ava"  accept="image/png, image/jpeg, image/bmp" />
                 </div>
                 <button type="submit" class="btn btn-lg btn-block btn-outline-primary">Отправить</button>
             </form>
