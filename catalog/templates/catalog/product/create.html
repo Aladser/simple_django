@@ -3,7 +3,30 @@
 {% block content %}
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <div class="w-75 mx-auto">
-            форма добавления товара
+            <form method="post" action="/product/" class="form-floating">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="name">Имя</label>
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Имя" required>
+                </div>
+                <div class="mb-3">
+                    <label for="phone">Описание</label>
+                    <input type="text" name="phone" class="form-control" id="phone" placeholder="Описание" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message">Цена за покупку</label>
+                    <textarea type="number" name="message" class="form-control" id="message" placeholder="Цена" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="category">Категория</label>
+                    <textarea type="text" name="message" class="form-control" id="category" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="ava">Изображение</label>
+                    <textarea type="text" name="message" class="form-control" id="ava" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-lg btn-block btn-outline-primary">Отправить</button>
+            </form>
         </div>
     </div>
 {% endblock %}

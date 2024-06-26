@@ -1,3 +1,4 @@
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from catalog.models import Product, Contact, Category
 
@@ -28,6 +29,13 @@ def product_create(request):
         'catalog/product/create.html',
         {'title': 'Склад - добавление товара','header':'Добавить товар'}
     )
+
+
+def product_store(request):
+    name = request.POST['name']
+    phone = request.POST['phone']
+    message = request.POST['message']
+    return HttpResponseRedirect("/")
 
 
 def contacts(request):
