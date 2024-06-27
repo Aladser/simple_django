@@ -25,7 +25,7 @@ class Product(models.Model):
     """Товар"""
     name = models.CharField(max_length=100, verbose_name='Имя')
     description = models.CharField(max_length=256, verbose_name='Описание', **NULLABLE)
-    ava = models.ImageField(upload_to='img/products', verbose_name='Аватар', **NULLABLE)
+    ava = models.ImageField(upload_to='img/products', verbose_name='Аватар', default=None, **NULLABLE)
     price = models.IntegerField(verbose_name='Цена за покупку', **NULLABLE)
     is_active = models.BooleanField(default=True, verbose_name='Активен')
     created_at = models.DateTimeField(auto_now_add=True)
