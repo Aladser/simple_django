@@ -19,5 +19,18 @@
             <td>{{prd.price}} р.</td></tr>
         {% endfor %}
     </table>
+
+    {% if pages.count > 1 %}
+    <div>
+        <span>Страницы: </span>
+        {% for i in pages.list %}
+            {% if i == pages.number %}
+                <span class='fw-bold'>{{i}}</span>
+            {% else %}
+                <a href="?page={{i}}">{{i}}</a>
+            {% endif %}
+        {% endfor %}
+    </span>
+    {% endif %}
 </div>
 {% endblock %}

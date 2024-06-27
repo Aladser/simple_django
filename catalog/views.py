@@ -1,17 +1,39 @@
-from django.http import HttpResponse, HttpResponseRedirect
+import math
+
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
+
 from catalog.models import Product, Contact, Category
+
+PAGINATION_ELEM_COUNT = 5
 
 
 def index(request):
-    products = Product.objects.all().order_by('-updated_at').values()
-    for prd in products:
+    page_number = int(request.GET['page']) if 'page' in request.GET else 1
+    prd_list_start_index = (page_number - 1) * PAGINATION_ELEM_COUNT
+
+    products_dict = Product.objects.all().order_by('-updated_at').values()
+
+    pages_count = math.ceil(len(products_dict) / PAGINATION_ELEM_COUNT)
+    pages_list = [i + 1 for i in range(pages_count)] if pages_count > 1 else None
+
+    products_dict = products_dict[prd_list_start_index:prd_list_start_index + PAGINATION_ELEM_COUNT]
+    for prd in products_dict:
         prd['category'] = Category.objects.filter(pk=prd['category_id']).get().name
         del prd['category_id']
         prd['name'] = prd['name'][:100]
 
     return render(request, 'catalog/product/index.html',
-                  {'title': 'Склад', 'header': 'Список товаров', 'products': products})
+                  {
+                      'title': 'Склад',
+                      'header': 'Список товаров',
+                      'products': products_dict,
+                      'pages': {
+                          'number': page_number,
+                          'count': pages_count,
+                          'list': pages_list
+                      }
+                  })
 
 
 def product_show(request, pk):
