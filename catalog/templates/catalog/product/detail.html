@@ -10,7 +10,7 @@
             <div class="border-top border-bottom p-3 mb-3 w-50 mx-auto">{{product.description}}</div>
             <div><span class="fw-bolder">Цена: </span> {{product.price}} руб.</div>
             <div><span class="fw-bolder">Категория: </span> {{product.category}}</div>
-            <div><span class="fw-bolder">Добавлен: </span> {{product.manufactured_at}}</div>
+            <div><span class="fw-bolder">Добавлен: </span> {{product.manufactured_at|format_datetime}}</div>
         </div>
     </div>
 {% endblock %}

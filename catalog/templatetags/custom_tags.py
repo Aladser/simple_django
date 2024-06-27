@@ -15,3 +15,8 @@ def full_image_path(image_file):
         return img_folder_url + str(image_file)
     else:
         return img_folder_url + 'empty_file.png'
+
+
+@register.filter()
+def format_datetime(datetime):
+    return datetime.strftime("%d-%m-%Y %H:%M")
