@@ -1,9 +1,9 @@
 import math
 
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 
-from catalog.models import Product, Contact, Category
+from catalog.models import Product, Category
 
 PAGINATION_ELEM_COUNT = 5
 
@@ -36,7 +36,7 @@ def index(request):
                   })
 
 
-def product_show(request, pk):
+def show(request, pk):
     product = Product.objects.filter(pk=pk).get()
     title = f"Склад - {product.name}"
     return render(
@@ -46,7 +46,7 @@ def product_show(request, pk):
     )
 
 
-def product_create(request):
+def create(request):
     return render(
         request,
         'catalog/product/create.html',
@@ -58,25 +58,14 @@ def product_create(request):
     )
 
 
-def product_store(request):
+def store(request):
     product_dict = {}
     for prd in request.POST.items():
         if prd[0] != 'csrfmiddlewaretoken':
-            product_dict[prd[0]] = prd[1] if prd[1] != '' else None
+            if prd[0] in ('category_id', 'price'):
+                product_dict[prd[0]] = int(prd[1])
+            else:
+                product_dict[prd[0]] = prd[1] if prd[1] != '' else None
 
     Product.objects.create(**product_dict)
-    return HttpResponseRedirect("/")
-
-
-def contacts(request):
-    if request.method == 'POST':
-        name = request.POST['name']
-        phone = request.POST['phone']
-        message = request.POST['message']
-        print(f"Пользователь {name}({phone}) написал: {message}")
-
-    return render(
-        request,
-        'catalog/contacts.html',
-        {'title': 'Склад - контакты', 'header': 'Контакты', 'contacts': Contact.objects.all()}
-    )
+    return HttpResponseRedirect('/')
