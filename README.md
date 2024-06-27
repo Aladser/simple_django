@@ -17,5 +17,5 @@
 #### Шаблоны
 + *catalog/basic.html* - базовый шаблон
 + *catalog/product/[create.html, index.html, detail.html]* - страницы создания товара, списка товаров, отдельного товара
-+ *catalog/contacts* - контакты
++ *catalog/contacts.html* - контакты
 + *catalog/components* - папка подшаблонов
