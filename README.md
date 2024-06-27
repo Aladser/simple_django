@@ -6,10 +6,10 @@
   * команда ``seed_json`` - сидирование из дампа data.json
 
 #### Модели
-+ ``Category`` - категория
-+ ``Product`` - товар
-+ ``Contact`` - контакт
++ ``Category`` (*catalog/models/category*) - категория
++ ``Product`` (*catalog/models/product*) - товар
++ ``Contact`` (*catalog/models/contact*) - контакт
 
 #### Контроллеры
-+ ``products`` (*catalog/views/products*) - товары: index, show, create, store
-+ ``contacts`` (*catalog/views*) - контакты
++ ``products`` (*catalog/views/products*) - товар: index, show, create, store
++ ``contacts`` (*catalog/views/contacts*) - контакт
