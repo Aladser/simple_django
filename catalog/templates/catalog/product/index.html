@@ -3,7 +3,7 @@
 {% block content %}
 <div class="row text-center">
     <div class="mb-4">
-        <a href="/product/create" class="btn btn-primary ">Добавить товар</a>
+        <a href="/product/create" class="btn btn-primary">Добавить товар</a>
     </div>
 
     <table class="table w-75 mx-auto">
@@ -14,7 +14,9 @@
         </tr>
         {%for prd in products %}
         <tr>
-            <td><a href="/product/{{prd.id}}">{{prd.name}}</a></td>
+            <td>
+                <a href="/product/{{prd.id}}" class="link-underline-dark text-black link-offset-2 link-underline-opacity-50">{{prd.name}}</a>
+            </td>
             <td>{{prd.category}}</td>
             <td>{{prd.price}} р.</td></tr>
         {% endfor %}
@@ -27,7 +29,7 @@
             {% if i == pages.number %}
                 <span class='fw-bold'>{{i}}</span>
             {% else %}
-                <a href="?page={{i}}">{{i}}</a>
+                <a href="?page={{i}}" class="link-underline-dark text-black link-offset-2 ">{{i}}</a>
             {% endif %}
         {% endfor %}
     </span>
