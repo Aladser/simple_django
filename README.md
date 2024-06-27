@@ -12,4 +12,4 @@
 
 #### Контроллеры
 + ``products`` (*catalog/views/products*) - товар: index, show, create, store
-+ ``contacts`` (*catalog/views/contacts*) - контакт
++ ``contacts`` (*catalog/views*) - контакт
