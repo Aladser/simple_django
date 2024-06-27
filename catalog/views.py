@@ -1,25 +1,23 @@
 import math
-import os.path
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 from catalog.models import Product, Contact, Category
-from config.settings import BASE_DIR
 
 PAGINATION_ELEM_COUNT = 5
 
 
 def index(request):
     page_number = int(request.GET['page']) if 'page' in request.GET else 1
-    prd_list_start_index = (page_number - 1) * PAGINATION_ELEM_COUNT
+    # начальный диапазон выборки данных из БД
+    prd_list_start = (page_number - 1) * PAGINATION_ELEM_COUNT
 
-    products_dict = Product.objects.all().order_by('-updated_at').values()
-
+    products_dict = Product.objects.filter(is_active=True)
     pages_count = math.ceil(len(products_dict) / PAGINATION_ELEM_COUNT)
     pages_list = [i + 1 for i in range(pages_count)] if pages_count > 1 else None
 
-    products_dict = products_dict[prd_list_start_index:prd_list_start_index + PAGINATION_ELEM_COUNT]
+    products_dict = products_dict.order_by('-updated_at').values()[prd_list_start:prd_list_start + PAGINATION_ELEM_COUNT]
     for prd in products_dict:
         prd['category'] = Category.objects.filter(pk=prd['category_id']).get().name
         del prd['category_id']
