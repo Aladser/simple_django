@@ -1,6 +1,8 @@
 from django.contrib import admin
 
-from catalog.models import Category, Product, Contact
+from catalog.models.category import Category
+from catalog.models.contact import Contact
+from catalog.models.product import Product
 
 
 # Register your models here.
@@ -20,6 +22,6 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'inn', 'country', 'address')
-    list_filter = ('inn', 'country')
-    search_fields = ('inn', 'country')
+    list_display = ('pk', 'name', 'number', 'address')
+    list_filter = ('name', 'address')
+    search_fields = ('name', 'number')

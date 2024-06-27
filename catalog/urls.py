@@ -1,10 +1,16 @@
 from django.contrib import admin
 from django.urls import path
-from catalog.views import index, contacts, product_show
+
+from catalog.views import product
+from catalog.views.views import contacts
 
 urlpatterns = [
-    path('', index),
-    path('products/<int:pk>', product_show),
+    path('admin/', admin.site.urls),
+
+    path('', product.index),
+    path('product/<int:pk>', product.show),
+    path('product/create/', product.create),
+    path('product/', product.store),
+
     path('contacts/', contacts),
-    path('admin/', admin.site.urls)
 ]

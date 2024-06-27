@@ -1,0 +1,36 @@
+{% extends 'catalog/basic.html' %}
+
+{% block content %}
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <div class="w-75 mx-auto">
+            <form method="post" action="/product/" class="form-floating">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="name">Имя</label>
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Имя" required>
+                </div>
+                <div class="mb-3">
+                    <label for="description">Описание</label>
+                    <input type="text" name="description" class="form-control" id="description" placeholder="Описание">
+                </div>
+                <div class="mb-3">
+                    <label for="price">Цена за покупку</label>
+                    <input type="number" name="price" class="form-control" id="price" placeholder="Цена" required>
+                </div>
+                <div class="mb-3">
+                    <label for="category">Категория</label>
+                    <select class="w-100 py-2 border bg-white" name="category_id" id="category">
+                        {% for ctg in categories%}
+                        <option value="{{ctg.id}}">{{ctg.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="ava">Изображение</label>
+                    <input type="file" name="ava" class="form-control" id="ava"  accept="image/png, image/jpeg, image/bmp" />
+                </div>
+                <button type="submit" class="btn btn-lg btn-block btn-outline-primary">Отправить</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
