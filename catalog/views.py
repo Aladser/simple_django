@@ -1,9 +1,11 @@
 import math
+import os.path
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 from catalog.models import Product, Contact, Category
+from config.settings import BASE_DIR
 
 PAGINATION_ELEM_COUNT = 5
 
