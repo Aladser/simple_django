@@ -10,8 +10,13 @@ def contacts(request):
         message = request.POST['message']
         print(f"Пользователь {name}({phone}) написал: {message}")
 
+    contacts_dict = Contact.objects.all()
     return render(
         request,
         'catalog/contacts.html',
-        {'title': 'Склад - контакты', 'header': 'Контакты', 'contacts': Contact.objects.all()}
+        {
+            'title': 'Склад - контакты',
+            'header': 'Контакты',
+            'contacts': contacts_dict
+        }
     )

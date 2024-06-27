@@ -1,19 +1,12 @@
 from django.db import models
-
 from catalog.models.category import Category
-
-NULLABLE = {
-    'null': True,
-    'blank': True
-}
-
 
 class Product(models.Model):
     """Товар"""
     name = models.CharField(max_length=100, verbose_name='Имя')
-    description = models.CharField(max_length=256, verbose_name='Описание', **NULLABLE)
-    ava = models.ImageField(upload_to='img/products', verbose_name='Аватар', default=None, **NULLABLE)
-    price = models.IntegerField(verbose_name='Цена за покупку', **NULLABLE)
+    description = models.CharField(max_length=256, verbose_name='Описание', null=True, blank=True)
+    ava = models.ImageField(upload_to='img/products', verbose_name='Аватар', default=None, null=True, blank=True)
+    price = models.IntegerField(verbose_name='Цена за покупку', null=True, blank=True)
     is_active = models.BooleanField(default=True, verbose_name='Активен')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
@@ -29,7 +22,7 @@ class Product(models.Model):
         return f"{self.name} ({self.category}{' '+str(self.price) if self.price else ''})"
 
     class Meta:
-        verbose_name = 'Товары'
+        verbose_name = 'товар'
         verbose_name_plural = 'товары'
         ordering = ('name', 'price', 'created_at', 'updated_at')
 
