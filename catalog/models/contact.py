@@ -1,10 +1,5 @@
 from django.db import models
 
-NULLABLE = {
-    'null': True,
-    'blank': True
-}
-
 
 class Contact(models.Model):
     name = models.CharField(max_length=100, verbose_name='Имя')
@@ -15,6 +10,6 @@ class Contact(models.Model):
         return f"{self.name}, {self.number}"
 
     class Meta:
-        verbose_name = 'Контакт'
+        verbose_name = 'контакт'
         verbose_name_plural = 'контакты'
         ordering = ('name', 'number',)

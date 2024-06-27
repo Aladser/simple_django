@@ -6,19 +6,18 @@ from django.shortcuts import render
 from catalog.models.category import Category
 from catalog.models.product import Product
 
-PAGINATION_ELEM_COUNT = 5
+PAGINATION_ELEM_COUNT = 10
 
 
 def index(request):
     page_number = int(request.GET['page']) if 'page' in request.GET else 1
-    # начальный диапазон выборки данных из БД
-    prd_list_start = (page_number - 1) * PAGINATION_ELEM_COUNT
+    prd_list_chunk_start = (page_number - 1) * PAGINATION_ELEM_COUNT
 
     products_dict = Product.objects.filter(is_active=True)
     pages_count = math.ceil(len(products_dict) / PAGINATION_ELEM_COUNT)
-    pages_list = [i + 1 for i in range(pages_count)] if pages_count > 1 else None
+    pages_count_list = [i + 1 for i in range(pages_count)] if pages_count > 1 else None
 
-    products_dict = products_dict.order_by('-updated_at').values()[prd_list_start:prd_list_start + PAGINATION_ELEM_COUNT]
+    products_dict = products_dict.order_by('-updated_at').values()[prd_list_chunk_start:prd_list_chunk_start + PAGINATION_ELEM_COUNT]
     for prd in products_dict:
         prd['category'] = Category.objects.filter(pk=prd['category_id']).get().name
         del prd['category_id']
@@ -32,18 +31,21 @@ def index(request):
                       'pages': {
                           'number': page_number,
                           'count': pages_count,
-                          'list': pages_list
+                          'list': pages_count_list
                       }
                   })
 
 
 def show(request, pk):
     product = Product.objects.filter(pk=pk).get()
-    title = f"Склад - {product.name}"
     return render(
         request,
         'catalog/product/detail.html',
-        {'title': title, 'header': product.name, 'product': product}
+        {
+            'title': f"Склад - {product.name}",
+            'header': product.name,
+            'product': product
+        }
     )
 
 
