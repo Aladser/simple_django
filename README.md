@@ -11,8 +11,8 @@
 + ``Contact`` (*catalog/models/contact.py*) - контакт
 
 #### Контроллеры
-+ ``products`` (*catalog/views/products*) - товар: index, show, create, store
-+ ``contacts`` (*catalog/views/contacts*) - контакт
++ ``products`` (*catalog/views/products/views.py*) - товар: index, show, create, store
++ ``contacts`` (*catalog/views.py*) - контакт
 
 #### Шаблоны
 + *catalog/basic.html* - базовый шаблон
