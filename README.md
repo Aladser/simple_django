@@ -11,5 +11,11 @@
 + ``Contact`` (*catalog/models/contact.py*) - контакт
 
 #### Контроллеры
-+ ``products`` (*catalog/views/products/views.py*) - товар: index, show, create, store
-+ ``contacts`` (*catalog/views.py*) - контакт
++ ``products`` (*catalog/views/products*) - товар: index, show, create, store
++ ``contacts`` (*catalog/views/contacts*) - контакт
+
+#### Шаблоны
++ *catalog/basic.html* - базовый шаблон
++ *catalog/product/[create.html, index.html, detail.html]* - страницы создания товара, списка товаров, отдельного товара
++ *catalog/contacts* - контакты
++ *components* - папка подшаблонов
