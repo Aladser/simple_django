@@ -1,6 +1,6 @@
 from django.core.management import BaseCommand
 
-from catalog.models import Category, Product
+from catalog.models import Category, Product, Contact
 
 
 class Command(BaseCommand):
@@ -67,13 +67,25 @@ class Command(BaseCommand):
             'ava': 'bread.png'
         },
     ]
+    # контакты
+    contacts_list = [
+        {'pk': 1, 'name': 'Помидоркин', 'number': 10000001, 'address': 'Москва'},
+        {'pk': 2, 'name': 'Птичкин', 'number': 10000002, 'address': 'Питер'},
+        {'pk': 3, 'name': 'Светлов', 'number': 10000003, 'address': 'Тверь'},
+        {'pk': 4, 'name': 'Губкина', 'number': 10000004, 'address': 'Новосибирск'},
+        {'pk': 5, 'name': 'Аксенова', 'number': 10000005, 'address': 'Иркутск'},
+    ]
 
     def handle(self, *args, **kwargs):
         Product.objects.all().delete()
         Category.objects.all().delete()
+        Contact.objects.all().delete()
 
         category_create_list = [Category(**ctg) for ctg in self.category_list]
         Category.objects.bulk_create(category_create_list)
 
         product_create_list = [Product(**prd) for prd in self.product_list]
         Product.objects.bulk_create(product_create_list)
+
+        product_create_list = [Contact(**prd) for prd in self.contacts_list]
+        Contact.objects.bulk_create(product_create_list)

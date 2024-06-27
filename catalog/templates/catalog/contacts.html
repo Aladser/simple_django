@@ -5,23 +5,20 @@
         <div class="col-lg-9 col-md-6 col-sm-12">
             <div class="card mb-4 box-shadow">
                 <div class="card-body mb-2">
+                    <table class="table border shadow">
+                    <tr>
+                        <th class="bg-secondary text-light">Имя</th>
+                        <th class="bg-secondary text-light">Номер</th>
+                        <th class="bg-secondary text-light">Адрес</th>
+                    </tr>
                     {% for contact in contacts %}
-                    <table class="table table-striped border shadow">
                         <tr>
-                            <td class="w-25">Страна</td>
-                            <td>{{contact.country}}</td>
-                        </tr>
-                        <tr>
-                            <td class="w-25">ИНН</td>
-                            <td>{{contact.inn}}</td>
-                        </tr>
-                        <tr>
-                            <td class="w-25">Адрес</td>
+                            <td>{{contact.name}}</td>
+                            <td>{{contact.number}}</td>
                             <td>{{contact.address}}</td>
                         </tr>
-                        <br>
-                    </table>
                     {% endfor %}
+                    </table>
                 </div>
             </div>
         </div>

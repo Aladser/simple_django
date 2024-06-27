@@ -20,6 +20,6 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'inn', 'country', 'address')
-    list_filter = ('inn', 'country')
-    search_fields = ('inn', 'country')
+    list_display = ('pk', 'name', 'number', 'address')
+    list_filter = ('name', 'address')
+    search_fields = ('name', 'number')

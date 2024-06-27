@@ -42,20 +42,20 @@ class Product(models.Model):
         return f"{self.name} ({self.category}{' '+str(self.price) if self.price else ''})"
 
     class Meta:
-        verbose_name = 'продукт'
-        verbose_name_plural = 'продукты'
+        verbose_name = 'Товары'
+        verbose_name_plural = 'товары'
         ordering = ('name', 'price', 'created_at', 'updated_at')
 
 
 class Contact(models.Model):
-    country = models.CharField(max_length=100, verbose_name='Страна')
-    inn = models.IntegerField(verbose_name='ИНН')
-    address = models.CharField(max_length=200, verbose_name='Адрес')
+    name = models.CharField(max_length=100, verbose_name='Имя')
+    number = models.CharField(max_length=11, verbose_name='Номер')
+    address = models.CharField(max_length=100, verbose_name='Адрес')
 
     def __str__(self):
-        return f"{self.inn}, {self.country}, {self.address}"
+        return f"{self.name}, {self.number}"
 
     class Meta:
         verbose_name = 'Контакт'
         verbose_name_plural = 'контакты'
-        ordering = ('inn',)
+        ordering = ('name','number',)
