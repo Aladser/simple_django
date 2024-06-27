@@ -1,24 +1,11 @@
 from django.db import models
 
+from catalog.models.category import Category
+
 NULLABLE = {
     'null': True,
     'blank': True
 }
-
-
-class Category(models.Model):
-    """Категория"""
-    name = models.CharField(max_length=100, verbose_name='Имя')
-    description = models.CharField(max_length=256, verbose_name='Описание',**NULLABLE)
-    is_active = models.BooleanField(default=True, verbose_name='Активен')
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = 'категория'
-        verbose_name_plural = 'категории'
-        ordering = ('name',)
 
 
 class Product(models.Model):
@@ -46,16 +33,3 @@ class Product(models.Model):
         verbose_name_plural = 'товары'
         ordering = ('name', 'price', 'created_at', 'updated_at')
 
-
-class Contact(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Имя')
-    number = models.CharField(max_length=11, verbose_name='Номер')
-    address = models.CharField(max_length=100, verbose_name='Адрес')
-
-    def __str__(self):
-        return f"{self.name}, {self.number}"
-
-    class Meta:
-        verbose_name = 'Контакт'
-        verbose_name_plural = 'контакты'
-        ordering = ('name','number',)

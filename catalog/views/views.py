@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from catalog.models import Contact
+from catalog.models.contact import Contact
 
 
 def contacts(request):

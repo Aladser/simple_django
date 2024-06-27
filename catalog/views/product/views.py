@@ -3,7 +3,8 @@ import math
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 
-from catalog.models import Product, Category
+from catalog.models.category import Category
+from catalog.models.product import Product
 
 PAGINATION_ELEM_COUNT = 5
 
